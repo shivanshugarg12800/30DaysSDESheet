@@ -2,24 +2,24 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-void swap(int *a, int *b)
-{
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
 void sortColors(vector<int> &nums)
 {
-    int k = 0;
+    int one = 0;
+    int two = 0;
+    for (auto x : nums)
+        if (x == 1)
+            one++;
+        else if (x == 2)
+            two++;
+    int zero = nums.size() - one - two;
     for (int i = 0; i < nums.size(); i++)
     {
-        int mini = i;
-        for (int j = i + 1; j < nums.size(); j++)
-        {
-            if (nums[j] < nums[mini])
-                mini = j;
-        }
-        swap(&nums[i], &nums[mini]);
+        if (i < zero)
+            nums[i] = 0;
+        else if (i >= zero and i < (zero + one))
+            nums[i] = 1;
+        else
+            nums[i] = 2;
     }
 }
 int main()
